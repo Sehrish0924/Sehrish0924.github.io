@@ -46,8 +46,369 @@
     .animated-text {
         font-size: 2.5rem;
     }
-    
     .subtitle {
         font-size: 1.2rem;
+    }
+
+}
+/* Animated Statistics Section */
+.highlights {
+    padding: 5rem 2rem;
+    background-color: var(--dark-bg);
+    text-align: center;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.stat {
+    text-align: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.stat.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    font-family: 'Arial', sans-serif;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Pulse animation for numbers */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.stat-number.counting {
+    animation: pulse 0.5s ease-in-out;
+}
+/* Infinite Loop Carousel */
+.popular-recipes {
+    padding: 5rem 2rem;
+    background-color: var(--darker-bg);
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.carousel {
+    position: relative;
+    padding: 2rem 0;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    
+    /* Infinite animation - no pauses */
+    animation: scrollInfinite 30s linear infinite;
+}
+
+.carousel-item {
+    min-width: 320px;
+    background: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease;
+    position: relative;
+    border: 1px solid rgba(255, 165, 0, 0.1);
+    flex-shrink: 0;
+}
+
+/* Amber Glow Effect */
+.card-glow {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        transparent 0%, 
+        rgba(255, 165, 0, 0.1) 30%, 
+        rgba(255, 140, 0, 0.2) 50%, 
+        rgba(255, 165, 0, 0.1) 70%, 
+        transparent 100%);
+    border-radius: 17px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.carousel-item:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(255, 165, 0, 0.3);
+}
+
+.carousel-item:hover .card-glow {
+    opacity: 1;
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.4s ease;
+}
+
+.carousel-item:hover img {
+    transform: scale(1.05);
+}
+
+.carousel-content {
+    padding: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.carousel-content h3 {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+}
+
+.carousel-item:hover .carousel-content h3 {
+    color: #ffa500;
+}
+
+.carousel-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    font-size: 0.95rem;
+}
+
+.views {
+    color: #ffa500;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* TRUE INFINITE ANIMATION */
+@keyframes scrollInfinite {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-320px * 8 - 1.5rem * 8));
+    }
+}
+
+/* Alternative: Faster infinite animation */
+@keyframes scrollInfiniteFast {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-320px * 8 - 1.5rem * 8));
+    }
+}
+
+/* Pause animation on hover */
+.carousel:hover .carousel-track {
+    animation-play-state: paused;
+}
+
+/* Gradient edge overlays for smooth infinite effect */
+.carousel-container::before,
+.carousel-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.carousel-container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--darker-bg) 0%, transparent 100%);
+}
+
+.carousel-container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--darker-bg) 0%, transparent 100%);
+}
+
+/* Floating amber particles in background */
+.popular-recipes::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 165, 0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 140, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 165, 0, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+    animation: floatBackground 20s ease-in-out infinite;
+}
+
+@keyframes floatBackground {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+    }
+    33% {
+        transform: translateY(-10px) scale(1.02);
+    }
+    66% {
+        transform: translateY(10px) scale(0.98);
+    }
+}
+
+/* Card entrance animation */
+.carousel-item {
+    animation: cardEntrance 0.6s ease-out;
+}
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Staggered card entrance */
+.carousel-item:nth-child(1) { animation-delay: 0.1s; }
+.carousel-item:nth-child(2) { animation-delay: 0.2s; }
+.carousel-item:nth-child(3) { animation-delay: 0.3s; }
+.carousel-item:nth-child(4) { animation-delay: 0.4s; }
+.carousel-item:nth-child(5) { animation-delay: 0.5s; }
+.carousel-item:nth-child(6) { animation-delay: 0.6s; }
+.carousel-item:nth-child(7) { animation-delay: 0.7s; }
+.carousel-item:nth-child(8) { animation-delay: 0.8s; }
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .carousel-item {
+        min-width: 300px;
+    }
+    
+    @keyframes scrollInfinite {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-300px * 8 - 1.5rem * 8));
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        min-width: 280px;
+    }
+    
+    .carousel-container::before,
+    .carousel-container::after {
+        width: 50px;
+    }
+    
+    @keyframes scrollInfinite {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-280px * 8 - 1.5rem * 8));
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-item {
+        min-width: 260px;
+    }
+    
+    @keyframes scrollInfinite {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-260px * 8 - 1.5rem * 8));
+        }
+    }
+}
+
+/* Performance optimization */
+.carousel-track {
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Optional: Add a subtle pulse to the section title */
+.section-title {
+    animation: titlePulse 3s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
     }
 }

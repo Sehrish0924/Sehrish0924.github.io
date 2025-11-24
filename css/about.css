@@ -1,16 +1,8 @@
-/* CSS Variables - Add these if not in your main style.css */
-:root {
-    --darker-bg: #1a1a1a;
-    --accent: #e74c3c;
-    --accent-light: #ec7063;
-    --text-secondary: #666;
-}
-
 /* About Page Specific Styles */
 #about {
     background-color: var(--darker-bg);
     padding: 80px 0;
-    min-height: calc(100vh - 120px); /* Adjust based on your nav/footer height */
+    min-height: calc(100vh - 120px);
 }
 
 .about-container {
@@ -172,3 +164,4 @@
         font-size: 1rem;
     }
 }
+

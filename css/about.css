@@ -1,6 +1,16 @@
+/* CSS Variables - Add these if not in your main style.css */
+:root {
+    --darker-bg: #1a1a1a;
+    --accent: #e74c3c;
+    --accent-light: #ec7063;
+    --text-secondary: #666;
+}
+
 /* About Page Specific Styles */
 #about {
     background-color: var(--darker-bg);
+    padding: 80px 0;
+    min-height: calc(100vh - 120px); /* Adjust based on your nav/footer height */
 }
 
 .about-container {
@@ -10,38 +20,39 @@
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 0 20px;
 }
 
 .image-stack {
-    display: grid;
-    grid-template-areas: "stack";
     position: relative;
     height: 400px;
 }
 
 .image-stack__item {
-    grid-area: stack;
+    position: absolute;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
     opacity: 0;
-    animation: slideInLeft 0.8s ease forwards;
+    animation-fill-mode: forwards;
 }
 
 .image-stack__item--bottom {
-    justify-self: start;
-    align-self: start;
+    left: 0;
+    top: 0;
     width: 85%;
+    height: 85%;
     z-index: 1;
-    animation-delay: 0.2s;
+    animation: slideInLeft 0.8s ease 0.2s forwards;
 }
 
 .image-stack__item--top {
-    justify-self: end;
-    align-self: end;
+    right: 0;
+    bottom: 0;
     width: 75%;
+    height: 75%;
     z-index: 2;
-    animation-delay: 0.4s;
+    animation: slideInRight 0.8s ease 0.4s forwards;
 }
 
 .image-stack img {
@@ -54,7 +65,7 @@
 .about-content {
     text-align: left;
     opacity: 0;
-    animation: slideInRight 0.8s ease 0.3s forwards;
+    animation: fadeInUp 0.8s ease 0.6s forwards;
 }
 
 .about-content h2 {
@@ -70,7 +81,7 @@
     color: var(--text-secondary);
 }
 
-.about-content button {
+.cta-button {
     background: var(--accent);
     color: white;
     border: none;
@@ -83,8 +94,42 @@
     animation: fadeInUp 0.8s ease 0.8s forwards;
 }
 
-.about-content button:hover {
+.cta-button:hover {
     background: var(--accent-light);
+}
+
+/* Animation Keyframes */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* About Page Responsive */
@@ -97,11 +142,22 @@
     .about-content {
         text-align: center;
     }
+    
+    .image-stack {
+        height: 350px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
 }
 
 @media (max-width: 768px) {
+    #about {
+        padding: 60px 0;
+    }
+    
     .about-container {
-        padding: 20px 15px;
+        padding: 0 15px;
+        gap: 30px;
     }
     
     .about-content h2 {
@@ -110,5 +166,9 @@
     
     .image-stack {
         height: 300px;
+    }
+    
+    .about-content p {
+        font-size: 1rem;
     }
 }

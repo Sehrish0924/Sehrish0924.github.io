@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Flavor Fusion</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    
 </head>
 <body>
     <nav>
@@ -16,14 +13,16 @@
             <i class="fas fa-utensils"></i>
             <span>Flavor Fusion</span>
         </div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="recipes.html">Recipes</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="contact.html">Contact</a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html#home">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#recipes">Recipes</a>
+            <a href="index.html#gallery">Gallery</a>
+            <a href="index.html#contact">Contact</a>
         </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
     </nav>
+
     <section id="about" class="page">
         <div class="about-container">
             <div class="image-stack">
@@ -39,13 +38,12 @@
                 <h2>Our Culinary Journey</h2>
                 <p>Founded in 2018, Flavor Fusion began as a small blog sharing family recipes. Today, we've grown into a comprehensive culinary resource with thousands of tested recipes from around the globe.</p>
                 <p>Our mission is to make gourmet cooking accessible to everyone, regardless of skill level. We believe that cooking should be an enjoyable, creative experience that brings people together around the table.</p>
-                <button>Learn More</button>
+                <button class="cta-button">Learn More</button>
             </div>
         </div>
     </section>
-    <script src="js/about.js"></script>
-</body>
-<footer>
+
+    <footer>
         <div class="footer-content">
             <div class="social-links">
                 <a href="#"><i class="fab fa-facebook"></i></a>
@@ -58,4 +56,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="js/script.js"></script>
+</body>
 </html>

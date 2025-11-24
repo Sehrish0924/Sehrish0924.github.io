@@ -1,5 +1,33 @@
+// Mobile menu functionality for Recipes page
+function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            
+            // Change icon
+            if (navLinks.classList.contains('active')) {
+                this.innerHTML = '✕';
+            } else {
+                this.innerHTML = '☰';
+            }
+        });
+        
+        // Close menu when clicking on links
+        const navLinksItems = navLinks.querySelectorAll('a');
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '☰';
+            });
+        });
+    }
+}
+
 // Smart Recipe Filter with Page Load Animations Only
-document.addEventListener('DOMContentLoaded', function() {
+function initRecipeFilter() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const recipeCards = document.querySelectorAll('.recipe-card');
     let hasInteracted = false;
@@ -80,4 +108,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 '<i class="far fa-bookmark"></i>';
         });
     });
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initMobileMenu(); // Initialize mobile menu
+    initRecipeFilter(); // Initialize recipe filtering functionality
 });

@@ -1,5 +1,33 @@
+// Mobile menu functionality for Contact page
+function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            
+            // Change icon
+            if (navLinks.classList.contains('active')) {
+                this.innerHTML = '✕';
+            } else {
+                this.innerHTML = '☰';
+            }
+        });
+        
+        // Close menu when clicking on links
+        const navLinksItems = navLinks.querySelectorAll('a');
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '☰';
+            });
+        });
+    }
+}
+
 // Contact Form Validation
-document.addEventListener('DOMContentLoaded', function() {
+function initContactForm() {
     const contactForm = document.getElementById('contactForm');
     
     // Only run if contact form exists on this page
@@ -143,4 +171,10 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
         observer.observe(card);
     });
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initMobileMenu(); // Initialize mobile menu
+    initContactForm(); // Initialize contact form functionality
 });

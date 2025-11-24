@@ -1,5 +1,33 @@
+// Mobile menu functionality for Recipe Instructions page
+function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            
+            // Change icon
+            if (navLinks.classList.contains('active')) {
+                this.innerHTML = '✕';
+            } else {
+                this.innerHTML = '☰';
+            }
+        });
+        
+        // Close menu when clicking on links
+        const navLinksItems = navLinks.querySelectorAll('a');
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '☰';
+            });
+        });
+    }
+}
+
 // Single Recipe Page JavaScript for Interactivity
-document.addEventListener('DOMContentLoaded', function() {
+function initRecipeInteractivity() {
     console.log('Single recipe page interactivity added.');
 
     // --- 1. Ingredient Check-off Functionality ---
@@ -45,4 +73,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initMobileMenu(); // Initialize mobile menu
+    initRecipeInteractivity(); // Initialize recipe interactivity
 });

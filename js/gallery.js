@@ -1,5 +1,33 @@
+// Mobile menu functionality for Gallery page
+function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            
+            // Change icon
+            if (navLinks.classList.contains('active')) {
+                this.innerHTML = '✕';
+            } else {
+                this.innerHTML = '☰';
+            }
+        });
+        
+        // Close menu when clicking on links
+        const navLinksItems = navLinks.querySelectorAll('a');
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '☰';
+            });
+        });
+    }
+}
+
 // Gallery Page JavaScript - Grid Layout with Modal
-document.addEventListener('DOMContentLoaded', function() {
+function initGalleryModal() {
     const galleryItems = document.querySelectorAll('.gallery-item');
     
     // Create modal element
@@ -71,4 +99,10 @@ document.addEventListener('DOMContentLoaded', function() {
         item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(item);
     });
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initMobileMenu(); // Initialize mobile menu
+    initGalleryModal(); // Initialize gallery modal functionality
 });
